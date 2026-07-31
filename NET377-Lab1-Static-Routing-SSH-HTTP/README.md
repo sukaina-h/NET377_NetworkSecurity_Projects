@@ -151,7 +151,6 @@ Through this lab I learned how to:
 - Troubleshoot network connectivity using Cisco IOS commands
 
 ---
-
 ## Repository Structure
 
 ```
@@ -159,14 +158,17 @@ NET377-Lab1-Static-Routing-SSH-HTTP
 │
 ├── README.md
 ├── Lab1-Sukaina-Hussain-v1.pkt
-├── Lab1-Answers.pdf
-└── screenshots/
-    ├── topology.png
-    ├── ping-tests.png
-    ├── show-ip-route.png
-    ├── ssh-login.png
-    └── http-test.png
+└── Lab1-Answers.pdf
 ```
+
+The **Lab1 Answers** document contains:
+- Network topology screenshots
+- Router configuration verification
+- Static routing verification
+- Ping test results
+- HTTP service test
+- SSH login verification
+- Responses to all required lab questions
 
 ---
 
