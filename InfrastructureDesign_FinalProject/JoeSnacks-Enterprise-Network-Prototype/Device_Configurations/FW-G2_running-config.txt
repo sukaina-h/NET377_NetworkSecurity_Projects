@@ -1,0 +1,98 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname FW-G2
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 10.5.1.3 255.255.255.192
+ ip access-group FW-G2-INTRANET-IN in
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ ip address 10.3.1.1 255.255.254.0
+ ip access-group FW-G2-INTERNAL-IN in
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 10.2.1.0 255.255.255.192 10.3.1.3 
+!
+ip flow-export version 9
+!
+!
+ip access-list extended FW-R2-DMZ-IN
+ permit tcp host 10.2.1.10 host 10.5.1.12 eq 5432
+ permit tcp host 10.2.1.11 host 10.5.1.11 eq 389
+ permit tcp host 10.2.1.11 10.3.0.0 0.0.1.255 eq 3389
+ permit tcp host 10.2.1.10 host 10.5.1.12 eq www
+ permit tcp host 10.2.1.10 host 10.5.1.12 eq 443
+ permit tcp host 10.2.1.11 10.3.0.0 0.0.1.255 eq www
+ permit tcp host 10.2.1.11 10.3.0.0 0.0.1.255 eq 443
+ deny ip any any
+ip access-list extended FW-R2-INTERNAL-IN
+ permit tcp host 10.5.1.12 host 10.2.1.10 established
+ permit tcp host 10.5.1.11 host 10.2.1.11 established
+ permit tcp 10.3.0.0 0.0.1.255 host 10.2.1.11 established
+ permit tcp host 10.5.1.10 any established
+ permit tcp host 10.5.1.13 any established
+ deny ip any any
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
