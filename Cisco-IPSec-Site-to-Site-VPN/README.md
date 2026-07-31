@@ -158,9 +158,6 @@ Cisco-IPSec-Site-to-Site-VPN/
 ├── README.md
 ├── IPSec-Site-to-Site-VPN.pkt
 ├── Lab4-Answers.pdf
-└── Device-Configurations/
-    ├── R1.txt
-    └── R2.txt
 ```
 
 ---
